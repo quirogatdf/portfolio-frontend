@@ -1,0 +1,70 @@
+{
+  "name": "Marcelo Emanuel Quiroga",
+  "backImage": "https://serving.photos.photobox.com/5452879570c8379f0043349add9b79895419734f797da184c8e0d7b2fabafee406656ba7.jpg",
+  "profileImage": "https://i.pinimg.com/originals/74/aa/12/74aa122cc4c839fe08967cfddb6a158d.jpg",
+  "position": "Desarrollador Web Fullstack Jr",
+  "company": {
+    "name": "Ministerio de Educación",
+    "img": "https://visualpharm.com/assets/699/Organization-595b40b65ba036ed117d0afe.svg",
+    "url": "#"
+  },
+  "school": {
+    "name": "Acamica",
+    "img": "",
+    "url": "#"
+  },
+  "ubication": "Río Grande, Tierra del Fuego",
+  "about": "👋🏻Hola! Soy Emanuel, estudiante de Desarrollador Web Full Stack, un curso creado por el Ministerio de Desarrollo Productivo de Argentina.<br />En 2020 comencé a introducirme en el mundo de la programación, y es al día de hoy qué sigo capacitándome y adquiriendo aún más conocimientos.<br />🎯Mí objetivo es formar parte de una empresa que me permita aplicar y potenciar mis habilidades y así desarrollar mis capacidades para lograr los mejores resultados.",
+  "experience": [
+    {
+      "position": "Administrador de Redes",
+      "company": "Omega computación",
+      "img": "",
+      "mode": "part-time",
+      "start": "Abril 2015",
+      "end": "Mayo 2017",
+      "timeElapsed": "2 años y 6 meses"
+    }
+  ],
+  "education": [
+    {
+      "school": "Acamica",
+      "title": "Desarrollador Web Back End",
+      "img": "",
+      "career": "TTP en Informática Personal y Profesional",
+      "score": 0,
+      "start": "2006",
+      "end": "2009"
+    }
+  ],
+  "aptitudes": [
+    {
+      "name": "Resolución de problemas",
+      "progress": 75,
+      "confirms": 2,
+      "confirmsNames": [
+        {
+          "name": "Alvarez, Julián"
+        }
+      ]
+    },
+    {
+      "name": "Diseño de sistemas",
+      "progress": 75,
+      "confirms": 3,
+      "confirmsNames": [
+        {
+          "name": "Romero, Braian"
+        }
+      ]
+    }
+  ],
+  "achivements": [
+    {
+      "name": "Huaro App"
+    },
+    {
+      "name": "Lanterns 19/09"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+
+nav {
+    background-color: #183153;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+nav img {
+    width: 90px;
+}
+.fa-xxs{
+    font-size:1.5rem;
+}
+nav ul {
+    float: right;
+    list-style-type: none;
+    margin-top: 0.5rem;
+}
+
+ul li {
+    display: inline-block;
+    padding: 0.4rem;
+}
+
+li a {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+
+    /* padding: 0.3rem; */
+
+}
+span{
+    color: white;
+    font-size: small;
+    font-weight: bold;
+    margin-left: 0.3rem;
+    user-select: none;
+}
+.fa-right-to-bracket{
+    color: white;
+}

@@ -1,0 +1,11 @@
+.card-hard-skills{
+    
+    text-align: center;
+}
+
+@media screen and (max-width:400px) {
+    circle-progress{
+        width: 30%;
+    }
+    
+}

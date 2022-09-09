@@ -1,0 +1,67 @@
+*{
+    box-sizing: border-box;
+}
+h1{
+    color: #1d1f42;
+}
+ 
+.background-login{
+    min-height: 100vh;
+    display: block;
+    background-color: #183153;
+    height: auto;
+    margin-top: 0rem ;
+}
+.login{
+    text-align: center;
+    margin-top: -40em;
+}
+.custom-form{
+    border-radius: 0.5rem;
+    min-width: 300px;
+    max-width: 60%;
+    margin: 0px auto;
+    padding: 2rem 3rem;
+    background-color: #385972;
+    box-shadow: 13px 13px 20px #10193d;
+    color: black;
+    
+}
+.custom-form input{
+    display: block;
+    margin: 2rem 0;
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: none;
+    box-shadow: inset -5px -5px 15px rgba(255,255,255, 0.8), inset 5px 5px 10px rgba(0, 0, 0, 0.1);
+    background: #ebf5fc;
+
+}
+a{
+    display: block;
+    padding: 1rem;
+    font-size: x-large;
+    text-decoration: none;
+    color: white;
+
+}
+button{
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    background-color: #84b0ec;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    color: #1f2366;
+    font-weight: bold;
+}
+
+@media screen and (min-width:400px) and (max-width:850px) {
+    .login{
+        margin-top: -60rem;
+    }
+    
+}

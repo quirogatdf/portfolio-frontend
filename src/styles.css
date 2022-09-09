@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+}
+
+* {
+    font-size: calc(0.5em + 0.5vw);
+}
+
+body {
+    background-color: #d6d6d6;
+    margin: 0px;
+}
+
+.card-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fa-solid {
+    color: black;
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 2.5rem;
+    text-align: center;
+}
+
+.fa-solid:hover {
+    cursor: pointer;
+    color: white;
+    border-radius: 50%;
+    background: rgba(76, 175, 80, 0.3)
+}
+
+
+@media screen and (min-width:400px) and (max-width: 600px) {
+    * {
+        font-size: calc(0.8em + 1vw)
+    }
+
+}
+@media screen and (max-width: 399px) {
+    * {
+        font-size: calc(0.7em + 1vw)
+    }
+
+}
