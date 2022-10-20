@@ -1,12 +1,13 @@
 <div class="container">
 <div class="row row-cols-auto">
     <div class="col-xs-12 col-sm-12 col-md-12">
-        <img class="rounded-circle" [src]="myData.profileImage" alt="profile image">
+        <div class="avatar" [ngStyle]="{'background-image': 'url('+myData.profileImage+')'}"></div>
+        
     </div>
     
     <div class="col-xs-12 col-sm-3 col-md-3">
-        <p><strong>{{ myData.name }}</strong></p>
-        <p>{{ myData.position }}</p>
+        <p><strong>{{myData.lastname}}, {{ myData.name }}</strong></p>
+        <p>{{ myData.title }}</p>
         <p>{{ myData.ubication }}</p>
 
     </div>
@@ -14,7 +15,7 @@
     <div class="card-about col-xs-12 col-sm-9 col-md-9" >
         <div class="card-title">
             <h2>Acerca de mi</h2>
-            <i href="#" class="fa-solid fa-square-pen fa-lg" *ngIf="isLogged===true"></i>
+            <i href="#" class="fa-solid fa-square-pen fa-lg" *ngIf="isLogged"></i>
         </div>
         <div class="card-content" [innerHTML]="myData.about"></div>
     </div>

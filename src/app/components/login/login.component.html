@@ -1,15 +1,28 @@
 <app-social></app-social>
-<div class="background-login"></div>
 
-    
+<div class="background-login">
+</div>
+<div class="container logueado" *ngIf="isLogged; else loggedOut">
+    <h2 >Ya has iniciado sesión.</h2>
+    <a href="/">Volver al sitio.</a>
+</div>
+
+<ng-template #loggedOut>
     <div class="login">
-        <form class="custom-form">
+        <form class="custom-form" #f="ngForm" (ngSubmit)="onLogin()" novalidate>
             <h1>Bienvenido</h1>
-            <input class="form-control" [(ngModel)]="username" type="text" name="username" placeholder="Username"
-            required />
-            <input [(ngModel)]="password" type="password" name="password" placeholder="Password" required="required" />
-            
-            <button type="submit" (click)="login()">Iniciar sesion</button>
+            <input type="text" class="form-control" name="username" placeholder="Username" [(ngModel)]="username"
+                required />
+
+            <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="password"
+                required="required" />
+            <button type="submit" [disabled]="!f.valid">Iniciar sesion</button>
+            <div class="form-group">
+
+                <div class="alert alert-danger" *ngIf="f.submitted && isLoginFail">username o contraseña incorrecta.
+                </div>
+            </div>
         </form>
         <a href="/" style="text-align: center;">Volver al sitio.</a>
     </div>
+</ng-template>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PortfolioService} from '../../services/portfolio.service'
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-about',
@@ -10,15 +11,19 @@ export class AboutComponent implements OnInit {
   myData:any = {};
   isLogged: boolean = false;
   constructor(
-    private datosPortfolio:PortfolioService
+    private tokenService: TokenService,
+    private datosPortfolio:PortfolioService,
 
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    if(this.tokenService.getToken()){
+      this.isLogged = true;
+    }
     
-    this.datosPortfolio.getAll().subscribe( (data) => {
+    this.datosPortfolio.getAbout().subscribe((data) => {
       this.myData = data;
-    });
+    })
   }
 
 }

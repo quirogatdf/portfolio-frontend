@@ -16,6 +16,14 @@ h1{
     text-align: center;
     margin-top: -40em;
 }
+.logueado { 
+    padding: 1.5em;
+    background-color: #84b0ec;
+    border-radius: 10px;
+    margin-top: -40em;
+    text-align: center;
+    
+}
 .custom-form{
     border-radius: 0.5rem;
     min-width: 300px;
@@ -58,10 +66,17 @@ button{
     color: #1f2366;
     font-weight: bold;
 }
+.form-group{
+    margin-top: 20px;
+}
 
 @media screen and (min-width:400px) and (max-width:850px) {
     .login{
-        margin-top: -60rem;
+        margin-top: -35rem;
+    }
+
+    .logueado{
+        margin-top: -35rem;
     }
     
 }

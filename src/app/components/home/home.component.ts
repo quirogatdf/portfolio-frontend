@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  isLogged: boolean = false;
+  //isLogged: boolean = false;
   constructor() { }
 
   ngOnInit(): void {

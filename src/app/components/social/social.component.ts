@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-social',
@@ -6,11 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./social.component.css']
 })
 export class SocialComponent implements OnInit {
-  isLogged: boolean = false;
+  isLogged = false;
 
-  constructor() { }
+  constructor(
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {
+    if (this.tokenService.getToken()){
+      this.isLogged = true;
+    }
+  }
+  onLogout():void{
+    this.tokenService.logOut();
+    window.location.reload();
   }
 
 }

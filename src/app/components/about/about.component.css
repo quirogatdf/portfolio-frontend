@@ -5,10 +5,24 @@
     margin-bottom: 2rem;
   
 }
-img {
+/* .profile {
+    border-radius:50%;
     width: 10rem;
     margin-top: -5.5rem;
     margin-left: 0.5rem;
+} */
+div.avatar {
+    /* cambia estos dos valores para definir el tamaño de tu círculo */
+    margin-top: -5.5rem;
+    margin-left: 0.5rem;
+    height: 10rem;
+    width: 10rem;
+    /* los siguientes valores son independientes del tamaño del círculo */
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+    background-color: white;
 }
 
 .row {
@@ -30,8 +44,9 @@ h2 {
 }
 
 @media screen and (max-width: 600px) {
-    img {
+    div.avatar{
         width: 5rem;
+        height: 5rem;
         margin-top: -2.6rem;
     }
     .card-about{

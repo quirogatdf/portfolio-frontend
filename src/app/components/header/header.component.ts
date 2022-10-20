@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.datosPortfolio.getAll().subscribe( (data) => {
+    this.datosPortfolio.getAbout().subscribe( (data) => {
       this.myData = data;
     });
   }
