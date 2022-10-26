@@ -11,12 +11,14 @@ import { ExperienceComponent } from './components/experience/experience.componen
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { SocialComponent } from './components/social/social.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { PortfolioService } from './services/portfolio.service';
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     FormsModule,
     NgCircleProgressModule.forRoot({}),
   ],
-  providers: [],
+  providers: [PortfolioService, { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

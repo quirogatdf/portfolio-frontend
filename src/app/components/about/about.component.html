@@ -1,26 +1,91 @@
 <div class="container">
-<div class="row row-cols-auto">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="avatar" [ngStyle]="{'background-image': 'url('+myData.profileImage+')'}"></div>
-        
-    </div>
-    
-    <div class="col-xs-12 col-sm-3 col-md-3">
-        <p><strong>{{myData.lastname}}, {{ myData.name }}</strong></p>
-        <p>{{ myData.title }}</p>
-        <p>{{ myData.ubication }}</p>
+    <div class="viewAbout">
+        <div class="row" *ngIf="!isEdited">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="avatar" >
+                    <img class="img-profile" src="{{myData.profileImage}}" alt="Imagen de Perfil">
+                </div>
 
-    </div>
+            </div>
 
-    <div class="card-about col-xs-12 col-sm-9 col-md-9" >
-        <div class="card-title">
-            <h2>Acerca de mi</h2>
-            <i href="#" class="fa-solid fa-square-pen fa-lg" *ngIf="isLogged"></i>
+            <div class="col-xs-12 col-sm-3 col-md-3">
+                <p><strong>{{myData.lastname}}, {{ myData.name }}</strong></p>
+                <p>{{ myData.title }}</p>
+                <p>{{ myData.ubication }}</p>
+            </div>
+
+            <div class="card-about col-xs-12 col-sm-9 col-md-9">
+                <div class="card-title">
+                    <h2>Acerca de mí</h2>
+
+                    <i href="#" class="fa-solid fa-square-pen fa-lg m-pen" *ngIf="isLogged"
+                        (click)="onEdit()"></i>
+                </div>
+                <div class="card-content" [innerHTML]="myData.about"></div>
+            </div>
         </div>
-        <div class="card-content" [innerHTML]="myData.about"></div>
-    </div>
-</div>
 
+        <!-- ########################################### -->
+        <!-- Formulario para editar los Datos personales -->
+        <!-- ########################################### -->
+        <div class=" d-flex justify-content-center" *ngIf="isEdited">
+            <form class="form-group row needs-validation" (ngSubmit)="submitEditForm()" [formGroup]="editAboutForm" id="editAboutForm" novalidate>
+                <div class="col-md-12">
+                    <h2>Editar descripción Personal</h2>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="lastname">Apellido</label>
+                    <input class="form-control" formControlName="lastname" type="text" name="lastname" id="lastname" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="name">Nombre</label>
+
+                    <input class="form-control" formControlName="name" type="text" name="name" id="name">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="phone">Telefono de Contacto</label>
+                    <input class="form-control" formControlName="phone" type="text" name="phone" id="phone">
+
+                </div>
+                <div class="col-md-8">
+                    <label class="form-label" for="mail">Correo electrónico</label>
+
+                    <input class="form-control" formControlName="mail" type="text" name="mail" id="mail">
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label" for="" class="form-label">Titulo</label>
+                    <input class="form-control" formControlName="title" type="text" name="title" id="tile">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="ubication" class="form-label">Ubicación</label>
+                    <input class="form-control" formControlName="ubication" type="text" name="ubication" id="ubication">
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label" for="profileImage" class="form-label">URL Imagen de perfil</label>
+                    <input class="form-control" formControlName="profileImage" type="text" name="profileImage" id="profileImage">
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label" for="bannerImage" class="form-label">URL Imagen de portada</label>
+                    <input class="form-control" formControlName="bannerImage" type="text" name="bannerImage" id="bannerImage">
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label" for="about" class="form-label">Sobre mí</label>
+                    <textarea class="form-control" maxlength="255" formControlName="about" name="about" id="about"></textarea>
+                </div>
+                
+                <div class="row">
+
+                    <div class="d-grid gap-2 col-6 mx-auto btn-margin" >
+                        <button type="submit" form="editAboutForm" class="btn btn-primary">Save</button>
+                    </div>
+                    <div class="d-grid gap-2 col-6 mx-auto btn-margin">
+                        <button class="btn btn-danger" (click)="onEdit()">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
 
 
 </div>

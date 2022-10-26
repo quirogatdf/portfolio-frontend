@@ -1,39 +1,143 @@
-<div class="card-title">
-    <h2>Experiencia</h2>
-    <i href="#" class="fa-solid fa-square-plus fa-lg"></i>
+<div *ngIf="isCreated">
+    <div id="formCreate" class="row d-flex justify-content-center">
+
+        <div id="form-title" class="mx-auto">
+            <h2>Nueva Experiencia</h2>
+        </div>
+
+
+        <form (ngSubmit)="onSaveNewExperience()" class="form-body form-group " action="">
+
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="position" class="form-label">Puesto Laboral</label>
+                <input [(ngModel)]="position" class="form-control" type="text" name="position" id="position">
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="company" class="form-label">Compañia</label>
+                <input [(ngModel)]="company" class="form-control" type="text" name="company" id="company">
+            </div>
+            <div class="row">
+                <div class="gap-2 col-4 mx-auto">
+                    <label class="form-label" for="startDate" class="form-label">Fecha de Inicio</label>
+                    <input [(ngModel)]="startDate" class="form-control" type="text" name="startDate" id="startDate">
+
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <label class="form-label" for="endDate" class="form-label">Fecha de Fin</label>
+                    <input [(ngModel)]="endDate" class="form-control" type="text" name="endDate" id="endDate">
+                </div>
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="image" class="form-label">URL de Imagen</label>
+                <input [(ngModel)]="image" class="form-control" type="text" name="image" id="image">
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="description" class="form-label">Descripción</label>
+                <textarea [(ngModel)]="descripcion" class="form-control" type="text" name="description"
+                    id="description"></textarea>
+            </div>
+            <div class="row mt-4 mb-4">
+
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-primary">Agregar</button>
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-danger" (click)="showCreateForm()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="isUpdated">
+    <div id="formEdit" class="row d-flex justify-content-center">
+        <div id="form-title" class="mx-auto">
+            <h2>Editar Experiencia</h2>
+        </div>
+        <form (ngSubmit)="onUpdateExperience()" novalidate #f="ngForm">
+
+
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="position" class="form-label">Puesto Laboral</label>
+                <input [(ngModel)]="exp.position" class="form-control" type="text" name="position" id="position" required>
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="company" class="form-label">Compañia</label>
+                <input [(ngModel)]="exp.company" class="form-control" type="text" name="company" id="company" required>
+            </div>
+            <div class="row">
+                <div class="gap-2 col-4 mx-auto">
+                    <label class="form-label" for="startDate" class="form-label">Fecha de Inicio</label>
+                    <input [(ngModel)]="exp.startDate" class="form-control" type="text" name="startDate" id="startDate" required>
+
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <label class="form-label" for="endDate" class="form-label">Fecha de Fin</label>
+                    <input [(ngModel)]="exp.endDate" class="form-control" type="text" name="endDate" id="endDate">
+                </div>
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="image" class="form-label">URL de Imagen</label>
+                <input [(ngModel)]="exp.image" class="form-control" type="text" name="image" id="image">
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="description" class="form-label">Descripción</label>
+                <textarea [(ngModel)]="exp.descripcion" class="form-control" type="text" name="description"
+                    id="description"></textarea>
+            </div>
+
+
+            <div class="row mt-4 mb-4">
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-primary" [disabled]="!f.valid">Actualizar</button>
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-danger" (click)="showEditForm()">Cancelar</button>
+                </div>
+            </div>
+
+
+
+        </form>
+    </div>
 
 </div>
 
-<ul class="items-list">
-    <li>
-        <div class="row row-cols-auto">
-            <div class="col-md-2 col-xs-12">
-                <img class="img-fluid"
-                    src="https://visualpharm.com/assets/699/Organization-595b40b65ba036ed117d0afe.svg">
-            </div>
-            <div class="col-md-10 col-xs-12">
-                <div class="card-title">
-                    <div>
-                        <h3>Colegio Provincial Cmte. Luis Piedrabuena</h3>
-                        <h4>Referente informático</h4>
-                        <h5>(xx/xx/xx - present)</h5>
-                    </div>
-                    <div>
-                        <i href="#" class="fa-solid fa-square-pen fa-lg"></i>
-                        <i href="#" class="fa-solid fa-square-xmark fa-lg"></i>
-                    </div>
+<div class="card-title" *ngIf="!isCreated && !isUpdated">
+    <h2>Experiencia</h2>
+    <i href="#" class="fa-solid fa-square-plus fa-lg" (click)="showCreateForm()"></i>
+
+</div>
+
+<div *ngIf="!isCreated && !isUpdated">
+
+    <ul class="item-list">
+        <li *ngFor="let myExperience of myExperience; let i = index" [attr.data-index]="i">
+            <div class="row row-cols-auto justify-content-center">
+                <div class="col-md-2 col-xs-12 ">
+                    <img class="img-experience" src="{{myExperience.image}}">
                 </div>
-                <div class="card-content">
-                    <h4>Descripción</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis nostrum delectus quaerat tempore
-                        nemo
-                        eius? Illo voluptas quod hic quae delectus impedit modi magni corrupti vero, ratione
-                        voluptatibus,
-                        enim
-                        aperiam.
-                    </p>
+
+                <div class="col-md-10 col-xs-12">
+                    <div class="card-title">
+                        <div>
+                            <h3>{{myExperience.company}}</h3>
+                            <h4>{{myExperience.position}}</h4>
+                            <h5>{{myExperience.startDate}} - {{myExperience.endDate}}</h5>
+                        </div>
+                        <div>
+                            <i href="#" class="fa-solid fa-square-pen fa-lg" (click)="loadExperienceData(myExperience.id)"></i>
+                            <i href="#" class="fa-solid fa-square-xmark fa-lg"
+                                (click)="deleteById(myExperience.id)"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h4>Descripción</h4>
+                        <p>{{myExperience.descripcion}}</p>
+                    </div>
+
                 </div>
             </div>
-        </div>
-    </li>
-</ul>
+        </li>
+    </ul>
+</div>

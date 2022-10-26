@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import {PortfolioService} from '../../services/portfolio.service'
 
 @Component({
@@ -9,12 +10,13 @@ import {PortfolioService} from '../../services/portfolio.service'
 export class HeaderComponent implements OnInit {
   myData:any = {};
   title = 'Mi lista de tareas';
+  
   constructor(
     private datosPortfolio:PortfolioService
   ) { }
 
   ngOnInit(): void {
-    this.datosPortfolio.getAbout().subscribe( (data) => {
+    this.datosPortfolio.getAbout('mequiroga').subscribe( (data) => {
       this.myData = data;
     });
   }

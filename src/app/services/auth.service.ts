@@ -11,7 +11,7 @@ import { Signup } from '../models/signup';
 })
 export class AuthService {
   //authUrl ="http://localhost:8080/api/v1/auth/";
-  authUrl = "https://api-argentinaprograma.herokuapp.com/api/v1/auth/";
+  authUrl = "https://api-ap-v1.herokuapp.com/api/v1/auth/";
   user: BehaviorSubject<any>;
 
   constructor(private http: HttpClient) {
