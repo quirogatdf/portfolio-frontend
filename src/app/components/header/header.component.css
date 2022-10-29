@@ -8,3 +8,11 @@
     float: center;
     
 }
+
+@media screen and (max-width: 600px) {
+    .img-banner {
+        height: 10em;
+    }
+
+
+}

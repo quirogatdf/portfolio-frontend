@@ -1,29 +1,135 @@
-<div class="card-title">
-    <h2>Educación</h2>
-    <i href="#" class="fa-solid fa-square-plus fa-lg"></i>
+<div *ngIf="isCreated">
+    <div id="formCreate" class="row d-flex justify-content-center">
+
+        <div id="form-title" class="mx-auto">
+            <h2>Añadir Educación</h2>
+        </div>
+
+
+        <form (ngSubmit)="saveNewEducation()" class="form-body form-group" novalidate #f="ngForm">
+
+            <div class="col-md-10 mx-auto mt-2">
+                <label class="form-label" for="institution" class="form-label">Instituto / Universidad</label>
+                <input [(ngModel)]="institution" class="form-control" type="text" name="institution" id="institution"
+                    placeholder="P. ej. Universidad Nacional" required>
+            </div>
+            <div class="col-md-10 mx-auto mt-2">
+                <label class="form-label" for="imageInstitution" class="form-label">Url de Imagen de la institución /
+                    Universidad</label>
+                <input [(ngModel)]="imageInstitution" class="form-control" type="text" name="imageInstitution"
+                    id="imageInstitution" placeholder="P. ej. http://www.domain.com/img/image.png">
+            </div>
+            <div class="col-md-10 mx-auto mt-2">
+                <label class="form-label" for="degree" class="form-label">Titulo</label>
+                <input [(ngModel)]="degree" class="form-control" type="text" name="degree" id="degree"
+                    placeholder="P. ej. Grado">
+            </div>
+            <div class="row mt-2">
+                <div class="gap-2 col-4 mx-auto ">
+                    <label class="form-label" for="startYear" class="form-label">Fecha de Inicio</label>
+                    <input [(ngModel)]="startYear" class="form-control" type="text" name="startYear" id="startYear"
+                        placeholder="P. ej. 1999" required>
+
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <label class="form-label" for="endYear" class="form-label">Fecha de Fin</label>
+                    <input [(ngModel)]="endYear" class="form-control" type="text" name="endYear" id="endYear"
+                        placeholder="P .ej. 2000">
+                </div>
+            </div>
+
+            <div class="row mt-4 mb-4">
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-primary" [disabled]="!f.valid">Agregar</button>
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-danger" (click)="showCreateForm()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="isEdited">
+    <div id="formEdit" class="row d-flex justify-content-center">
+
+        <div id="form-title" class="mx-auto">
+            <h2>Editar Educación</h2>
+        </div>
+        
+        <form (ngSubmit)="updateEducation()" novalidate #f="ngForm">
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="institution" class="form-label">Instituto / Universidad</label>
+                <input [(ngModel)]="getEducation.institution" class="form-control" type="text" name="institution" id="position" required>
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="imageInstitution" class="form-label">Url imagen de la institución / Universidad</label>
+                <input [(ngModel)]="getEducation.imageInstitution" class="form-control" type="text" name="imageInstitution" id="imageInstitution" required>
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="degree" class="form-label">Titulo</label>
+                <input [(ngModel)]="getEducation.degree" class="form-control" type="text" name="degree" id="degree">
+            </div>
+            <div class="row">
+                <div class="gap-2 col-4 mx-auto">
+                    <label class="form-label" for="startYear" class="form-label">Fecha de Inicio</label>
+                    <input [(ngModel)]="getEducation.startYear" class="form-control" type="text" name="startYear" id="starYear" required>
+
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <label class="form-label" for="endYear" class="form-label">Fecha de Fin</label>
+                    <input [(ngModel)]="getEducation.endYear" class="form-control" type="text" name="endYear" id="endDate">
+                </div>
+            </div>
+
+
+            <div class="row mt-4 mb-4">
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-primary" [disabled]="!f.valid">Actualizar</button>
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-danger" (click)="showEditForm()">Cancelar</button>
+                </div>
+            </div>
+
+
+
+        </form>
+    </div>
 
 </div>
 
-<ul class="items-list">
-    <li>
-        <div class="row row-cols-auto">
-            <div class="col-md-2 col-xs-12">
-                <img class="img-fluid"
-                    src="https://visualpharm.com/assets/699/Organization-595b40b65ba036ed117d0afe.svg" alt="img-organization">
-            </div>
-            <div class="col-md-10 col-xs-12 mt-4">
-                <div class="card-title">
-                    <div>
-                        <h3>Colegio Provincial Dr Ernesto Guevara</h3>
-                        <h4>Trayecto Técnico Profesional en Informática Profesional y Personal</h4>
-                        <h5>(xx/xx/xx - present)</h5>
-                    </div>
-                    <div>
-                        <i href="#" class="fa-solid fa-square-pen fa-lg"></i>
-                        <i href="#" class="fa-solid fa-square-xmark fa-lg"></i>
+<div *ngIf="!isCreated && !isEdited">
+
+    <div class="card-title">
+        <h2>Educación</h2>
+        <i href="#" class="fa-solid fa-square-plus fa-lg" *ngIf="isLogged" (click)="showCreateForm()"></i>
+
+    </div>
+
+    <ul class="items-list">
+        <li *ngFor="let myEducation of myEducation;  index as i">
+            <div class="row row-cols-auto">
+                <div class="col-md-2 col-xs-12 mt-2">
+                    <img class="img-education" src="{{ myEducation.imageInstitution }}">
+                </div>
+                <div class="col-md-10 col-xs-12 mt-2">
+                    <div class="card-title">
+                        <div>
+                            <h3>{{ myEducation.institution }}</h3>
+                            <h4>{{ myEducation.degree }}</h4>
+                            <h5>{{ myEducation.startYear }} - {{ myEducation.endYear }}</h5>
+                        </div>
+                        <div>
+                            <i href="#" class="fa-solid fa-square-pen fa-lg"
+                            (click)="loadEducationData(myEducation.id)" *ngIf="isLogged"></i>
+
+                            <i href="#" class="fa-solid fa-square-xmark fa-lg" 
+                            (click)="deleteById(myEducation.id)" *ngIf="isLogged"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </li>
-</ul>
+        </li>
+    </ul>
+</div>

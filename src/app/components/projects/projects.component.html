@@ -1,23 +1,150 @@
-<div>
-    <div class="card-titles">
-        <h2>Proyectos</h2>
-        <div class="btn-edit">
-            <a href="#" class="btn-right">
-                <i class="fa-solid fa-pen"></i>
-            </a>
+<div *ngIf="isCreated">
+    <div id="formCreate" class="row d-flex justify-content-center">
+
+        <div id="form-title" class="mx-auto">
+            <h2>Añadir Proyecto</h2>
         </div>
-    </div>
-    <div class="achivements">
-        <h3>Delilah-Resto Backend</h3>
-        <div>
-            <div class="project-title">
-                <h3>Delilah Resto - Backend</h3>
+
+        <form (ngSubmit)="saveNewProject()" class="form-body form-group" novalidate #f="ngForm">
+
+            <div class="col-md-10 mx-auto mt-2">
+                <label class="form-label" for="name" class="form-label">Nombre del Proyecto</label>
+                <input [(ngModel)]="name" class="form-control" type="text" name="name" id="name"
+                    placeholder="P. ej. Portfolio Web" required>
             </div>
-            <div>
-                <ul class="project-list">
-                    <li>Mi App</li>
-                </ul>
+            <div class="col-md-10 mx-auto mt-2">
+                <label class="form-label" for="projectDate" class="form-label">Fecha del Proyecto</label>
+                <input [(ngModel)]="projectDate" class="form-control" type="text" name="projectDate"
+                    id="projectDate" placeholder="P. ej. 24/10/2022" required>
             </div>
-        </div>
+            <div class="col-md-10 mx-auto mt-2">
+                <label class="form-label" for="urlRepository" class="form-label">Link del Proyecto</label>
+                <input [(ngModel)]="urlRepository" class="form-control" type="text" name="urlRepository"
+                    id="urlRepository" placeholder="P. ej. http://domain.com/repository" required>
+            </div>
+            <div class="col-md-10 mx-auto mt-2">
+                <label class="form-label" for="urlImage" class="form-label">Imagen del Proyecto</label>
+                <input [(ngModel)]="urlImage" class="form-control" type="text" name="urlImage" 
+                    id="urlImage" placeholder="P. ej. http://domain.com/img/image.png">
+            </div>
+            <div class="col-md-10 mx-auto mt-2">
+                <label class="form-label" for="description" class="form-label">Descripcion</label>
+                <textarea [(ngModel)]="description" class="form-control" type="text" name="description id="description
+                    placeholder="P. ej. Lorem ipsum"></textarea>
+            </div>
+
+            <div class="row mt-4 mb-4">
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-primary" [disabled]="!f.valid">Agregar</button>
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-danger" (click)="showCreateForm()">Cancelar</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
+
+<div *ngIf="isEdited">
+    <div id="formEdit" class="row d-flex justify-content-center">
+
+        <div id="form-title" class="mx-auto">
+            <h2>Editar Proyecto</h2>
+        </div>
+        
+        <form (ngSubmit)="updateProject()" novalidate #f="ngForm">
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="name" class="form-label">Nombre del Proyecto</label>
+                <input [(ngModel)]="getProject.name" class="form-control" type="text" name="name" id="name" required>
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="projectDate" class="form-label">Fecha del Proyecto</label>
+                <input [(ngModel)]="getProject.projectDate" class="form-control" type="text" name="projectDate" id="projectDate" required>
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="urlRepository" class="form-label">Link del Proyecto</label>
+                <input [(ngModel)]="getProject.urlRepository" class="form-control" type="text" name="urlRepository" id="urlRepository">
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="urlImage" class="form-label">Imagen del Proyecto</label>
+                <input [(ngModel)]="getProject.urlImage" class="form-control" type="text" name="urlImage" id="urlImage">
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="description" class="form-label">Descripción del Proyecto</label>
+                <textarea [(ngModel)]="getProject.description" class="form-control" name="description" id="description"></textarea>
+            </div>
+
+            <div class="row mt-4 mb-4">
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-primary" [disabled]="!f.valid">Actualizar</button>
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-danger" (click)="showEditForm()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<div *ngIf="!isCreated && !isEdited">
+    <div class="card-title">
+        <h2>Proyectos</h2>
+        <i href="#" class="fa-solid fa-square-plus fa-lg" *ngIf="isLogged" (click)="showCreateForm()"></i>
+    </div>
+    <div class="row ">
+        <div class="col-md-10 col-xs-10 mx-auto" *ngFor="let myProject of myProject;  index as i">
+            <div class="mt-4">
+                <div>
+                <h4 > {{ myProject.name }} </h4>
+                
+                    <i href="#" class="fa-solid fa-square-pen fa-lg"
+                    (click)="loadProjectData(myProject.id)" *ngIf="isLogged"></i>
+                    
+                    <i href="#" class="fa-solid fa-square-xmark fa-lg" 
+                    (click)="deleteById(myProject.id)" *ngIf="isLogged"></i>
+                </div>
+                    
+                </div>
+                
+                <span> Fecha del Proyecto: {{ myProject.projectDate }} </span>
+
+                <h5 class="mt-4">Descripción</h5>
+
+                <div class="row">
+                    <div class="col-md-2 col-xs-12">
+                        <img class="img-project" src="{{ myProject.urlImage }}">
+                    </div>
+
+                    <div class="col-md-10 col-xs-7">
+                        <p>  {{ myProject.description }} </p>
+                        
+                    </div>
+                </div>
+                <div class="col-md-10 col-xs-10 mt-4">
+                    <strong>Link del repositorio: </strong> <a href="{{ myProject.urlRepository }}">Haz click aqui!.</a>
+                </div>
+                
+                <hr>
+                
+                
+            </div>
+                
+                
+    </div>
+</div>
+    <!-- <div class="flex-skill" >
+        <div class="card col-xs-10 col-md-2" *ngFor="let mySkill of mySkill;  index as i">
+            <h5 class="mt-4">{{mySkill.skill}}</h5>
+            
+            <div class="card-body">
+                <div>
+                    <i href="#" class="fa-solid fa-square-pen fa-lg"
+                    (click)="loadSkillData(mySkill.id)" *ngIf="isLogged"></i>
+
+                    <i href="#" class="fa-solid fa-square-xmark fa-lg" 
+                    (click)="deleteById(mySkill.id)" *ngIf="isLogged"></i>
+                </div>
+            </div>
+        </div>
+    </div> -->

@@ -19,11 +19,11 @@ export class ExperienceComponent implements OnInit {
   isLogged: boolean = false;
 
   public company: string = '';
-  public position: string ='';
+  public position: string = '';
   public startDate: string = '';
-  public endDate : string = '';
+  public endDate: string = '';
   public image: string = '';
-  public descripcion: string ='';
+  public descripcion: string = '';
 
   constructor(
     private datosExperience: ExperienceService,
@@ -31,6 +31,9 @@ export class ExperienceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    }
     this.cargarLista();
   }
 
@@ -41,23 +44,24 @@ export class ExperienceComponent implements OnInit {
   }
 
   /* Habilita el formulario para cargar una nueva experiencia */
-  showCreateForm(): void{
-    if(this.isCreated){
+  showCreateForm(): void {
+    if (this.isCreated) {
       this.isCreated = false;
     } else {
       this.isCreated = true;
     }
   }
   /* Guarda en la base de datos la nueva experiencia */
-  onSaveNewExperience(): void{
+  SaveNewExperience(): void {
     let experience = new Experience(this.position, this.company, this.descripcion, this.startDate, this.endDate, this.image);
     this.datosExperience.save(experience).subscribe(data => {
       console.log('Experiencia ingresada con éxito')
       window.location.reload();
     })
   }
+
   /* Editar la experiencia seleccionada */
-  showEditForm():void {
+  showEditForm(): void {
     if (this.isUpdated) {
       this.isUpdated = false;
 
@@ -65,14 +69,14 @@ export class ExperienceComponent implements OnInit {
       this.isUpdated = true;
     }
   }
-  loadExperienceData(id:number){
+  loadExperienceData(id: number) {
     this.editID = id;
     this.showEditForm();
     this.datosExperience.getById(id).subscribe(data => {
       this.exp = data;
     })
   }
-  onUpdateExperience( ):void{
+  onUpdateExperience(): void {
     this.datosExperience.editById(this.editID, this.exp).subscribe(data => {
       this.cargarLista();
       this.isUpdated = false;
@@ -80,16 +84,16 @@ export class ExperienceComponent implements OnInit {
 
 
   }
-  /* Elimina la experiencia seleccionada */
+  /* Delete experience by Id. */
   deleteById(id: number) {
     this.datosExperience.deleteById(id).subscribe(data => {
       console.log('Experiencia eliminada');
-      
+
       this.cargarLista();
     },
-    err => {
-      console.log(err);
-    })
+      err => {
+        console.log(err);
+      })
 
   }
 

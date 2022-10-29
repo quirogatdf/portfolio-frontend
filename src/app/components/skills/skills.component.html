@@ -1,79 +1,118 @@
-<h2>Hard & Softs Skills</h2>
-<div class="card-hard-skills">
-<circle-progress
-[percent]="100"
-[radius]="55"
-[space]="-10"
-[title]= "'HTML'"
-[showSubtitle]="false"
-[showUnits]="false"
-[showInnerStroke]="true"
-[outerStrokeGradient]="true"
-[outerStrokeWidth]="10"
-[outerStrokeColor]="'#4882c2'"
-[outerStrokeGradientStopColor]="'#53a9ff'"
-[innerStrokeColor]="'#95dfe4'"
-[innerStrokeWidth]="10"
-[imageSrc]="'/assets/img/icons/html5.svg'"
-[showImage]="true"
-[imageWidth]="60"
-[imageHeight]="60"
-[animation]="true"
-[animationDuration]="400"
-[clockwise]="true"
-[startFromZero]="true"
-[showBackground]="false"
-></circle-progress>
-<circle-progress
-[percent]="90"
-[radius]="55"
-[space]="-10"
-[title]= "'CSS'"
-[showSubtitle]="false"
-[showUnits]="false"
-[showInnerStroke]="true"
-[outerStrokeGradient]="true"
-[outerStrokeWidth]="10"
-[outerStrokeColor]="'#4882c2'"
-[outerStrokeGradientStopColor]="'#53a9ff'"
-[innerStrokeColor]="'#95dfe4'"
-[innerStrokeWidth]="10"
-[imageSrc]="'/assets/img/icons/css.svg'"
-[showImage]="true"
-[imageWidth]="45"
-[imageHeight]="60"
-[animation]="true"
-[animationDuration]="400"
-[clockwise]="true"
-[startFromZero]="true"
-[showBackground]="false"
-></circle-progress>
-<circle-progress
-[percent]="80"
-[radius]="55"
-[space]="-10"
-[title]= "'JS'"
-[showSubtitle]="false"
-[showUnits]="false"
-[showInnerStroke]="true"
-[outerStrokeGradient]="true"
-[outerStrokeWidth]="10"
-[outerStrokeColor]="'#4882c2'"
-[outerStrokeGradientStopColor]="'#53a9ff'"
-[innerStrokeColor]="'#95dfe4'"
-[innerStrokeWidth]="10"
-[imageSrc]="'/assets/img/icons/js.svg'"
-[showImage]="true"
-[imageWidth]="43"
-[imageHeight]="60"
-[animation]="true"
-[animation]="true"
-[animationDuration]="400"
-[clockwise]="true"
-[startFromZero]="true"
-[showBackground]="false"
-></circle-progress>
+<div *ngIf="isCreated">
+    <div id="formCreate" class="row d-flex justify-content-center">
+
+        <div id="form-title" class="mx-auto">
+            <h2>Añadir Habilidad</h2>
+        </div>
+
+        <form (ngSubmit)="saveNewSkill()" class="form-body form-group" novalidate #f="ngForm">
+
+            <div class="col-md-10 mx-auto mt-2">
+                <label class="form-label" for="skill" class="form-label">Habilidad</label>
+                <input [(ngModel)]="skill" class="form-control" type="text" name="skill" id="skill"
+                    placeholder="P. ej. HTML" required>
+            </div>
+            <div class="col-md-10 mx-auto mt-2">
+                <label class="form-label" for="imageSkill" class="form-label">Url de la Imagen de la Habilidad</label>
+                <input [(ngModel)]="imageSkill" class="form-control" type="text" name="imageSkill"
+                    id="imageSkill" placeholder="P. ej. http://www.domain.com/img/image.png">
+            </div>
+            <div class="col-md-10 mx-auto mt-2">
+                <label class="form-label" for="degree" class="form-label">Porcentage</label>
+                <input [(ngModel)]="percent" class="form-control" type="number" min="0" max="100" name="percent" id="percent"
+                    placeholder="P. ej. 80">
+            </div>
+
+            <div class="row mt-4 mb-4">
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-primary" [disabled]="!f.valid">Agregar</button>
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-danger" (click)="showCreateForm()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-<div class="card-soft-skills">
+
+<div *ngIf="isEdited">
+    <div id="formEdit" class="row d-flex justify-content-center">
+
+        <div id="form-title" class="mx-auto">
+            <h2>Editar Habilidad</h2>
+        </div>
+        
+        <form (ngSubmit)="updateSkill()" novalidate #f="ngForm">
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="skill" class="form-label">Habilidad</label>
+                <input [(ngModel)]="getSkill.skill" class="form-control" type="text" name="skill" id="skill" required>
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="imageSkill" class="form-label">Url de la Imagen / Logo</label>
+                <input [(ngModel)]="getSkill.imageSkill" class="form-control" type="text" name="imageSkill" id="imageSkill" required>
+            </div>
+            <div class="col-md-10 mx-auto">
+                <label class="form-label" for="percent" class="form-label">Porcentage</label>
+                <input [(ngModel)]="getSkill.percent" class="form-control" type="number" min="0" max="100" name="percent" id="percent">
+            </div>
+
+            <div class="row mt-4 mb-4">
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-primary" [disabled]="!f.valid">Actualizar</button>
+                </div>
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-danger" (click)="showEditForm()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<div *ngIf="!isCreated && !isEdited">
+    <div class="card-title">
+        <h2>Habilidades</h2>
+        <i href="#" class="fa-solid fa-square-plus fa-lg" *ngIf="isLogged" (click)="showCreateForm()"></i>
+
+    </div>
+    <div class="flex-skill" >
+        <div class="card col-xs-10 col-md-2" *ngFor="let mySkill of mySkill;  index as i">
+            <h5 class="mt-4">{{mySkill.skill}}</h5>
+            <circle-progress 
+                [percent]="mySkill.percent" 
+                [radius]="55" 
+                [space]="-10" 
+                [title]="mySkill.skill"
+                [showTitle]="true" 
+                [showSubtitle]="false" 
+                [showUnits]="false" 
+                [showInnerStroke]="true"
+                [outerStrokeGradient]="true" 
+                [outerStrokeWidth]="10" 
+                [outerStrokeColor]="'#4882c2'"
+                [outerStrokeGradientStopColor]="'#53a9ff'" 
+                [innerStrokeColor]="'#95dfe4'" 
+                [innerStrokeWidth]="10"
+                [imageSrc]="mySkill.imageSkill" 
+                [showImage]="true" 
+                [imageWidth]="60" 
+                [imageHeight]="60" 
+                [animation]="true"
+                [animationDuration]="400" 
+                [clockwise]="true" 
+                [startFromZero]="true" 
+                [showBackground]="false">
+            </circle-progress>
+            <div class="card-body">
+                <div>
+                    <i href="#" class="fa-solid fa-square-pen fa-lg"
+                    (click)="loadSkillData(mySkill.id)" *ngIf="isLogged"></i>
+
+                    <i href="#" class="fa-solid fa-square-xmark fa-lg" 
+                    (click)="deleteById(mySkill.id)" *ngIf="isLogged"></i>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>

@@ -7,6 +7,15 @@ ul {
     margin-top: 0.5rem;
 }
 
+
+.img-education{
+    height: 7rem;
+    position:relative;
+    object-fit: cover;
+    overflow: hidden;
+    width: 7rem;
+}
+
 @media screen and (max-width:500px) {
     
     .col-xs-12 .img-fluid{

@@ -6,7 +6,7 @@ ul {
     margin-top: 0.5rem;
 }
 
-img{
+.img-experience{
     height: 9rem;
     position:relative;
     object-fit: cover;

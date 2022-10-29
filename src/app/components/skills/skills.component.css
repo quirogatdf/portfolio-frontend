@@ -1,11 +1,30 @@
-.card-hard-skills{
-    
+.flex-skill{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
     text-align: center;
+    background: #f0f0f0;
+    margin-right: 1em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+.flex-container > div {
+    margin: 2em;
+    /* padding: 20px; */
 }
 
 @media screen and (max-width:400px) {
-    circle-progress{
-        width: 30%;
+    .flex-skill{
+        flex-direction: column;
     }
+    .card{
+        width: auto;
+        text-align: center;
+    }
+    
     
 }

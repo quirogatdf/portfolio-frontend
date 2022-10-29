@@ -2,21 +2,21 @@
     <div id="formCreate" class="row d-flex justify-content-center">
 
         <div id="form-title" class="mx-auto">
-            <h2>Nueva Experiencia</h2>
+            <h2>Añadir Experiencia</h2>
         </div>
 
 
-        <form (ngSubmit)="onSaveNewExperience()" class="form-body form-group " action="">
+        <form (ngSubmit)="SaveNewExperience()" class="form-body form-group ">
 
-            <div class="col-md-10 mx-auto">
+            <div class="col-md-10 mx-auto mt-2">
                 <label class="form-label" for="position" class="form-label">Puesto Laboral</label>
                 <input [(ngModel)]="position" class="form-control" type="text" name="position" id="position">
             </div>
-            <div class="col-md-10 mx-auto">
+            <div class="col-md-10 mx-auto mt-2">
                 <label class="form-label" for="company" class="form-label">Compañia</label>
                 <input [(ngModel)]="company" class="form-control" type="text" name="company" id="company">
             </div>
-            <div class="row">
+            <div class="row mt-2">
                 <div class="gap-2 col-4 mx-auto">
                     <label class="form-label" for="startDate" class="form-label">Fecha de Inicio</label>
                     <input [(ngModel)]="startDate" class="form-control" type="text" name="startDate" id="startDate">
@@ -27,16 +27,16 @@
                     <input [(ngModel)]="endDate" class="form-control" type="text" name="endDate" id="endDate">
                 </div>
             </div>
-            <div class="col-md-10 mx-auto">
+            <div class="col-md-10 mx-auto mt-2">
                 <label class="form-label" for="image" class="form-label">URL de Imagen</label>
                 <input [(ngModel)]="image" class="form-control" type="text" name="image" id="image">
             </div>
-            <div class="col-md-10 mx-auto">
+            <div class="col-md-10 mx-auto mt-2">
                 <label class="form-label" for="description" class="form-label">Descripción</label>
                 <textarea [(ngModel)]="descripcion" class="form-control" type="text" name="description"
                     id="description"></textarea>
             </div>
-            <div class="row mt-4 mb-4">
+            <div class="row mt-4 mb-4 ">
 
                 <div class="d-grid gap-2 col-4 mx-auto">
                     <button class="btn btn-primary">Agregar</button>
@@ -105,7 +105,7 @@
 
 <div class="card-title" *ngIf="!isCreated && !isUpdated">
     <h2>Experiencia</h2>
-    <i href="#" class="fa-solid fa-square-plus fa-lg" (click)="showCreateForm()"></i>
+    <i href="#" class="fa-solid fa-square-plus fa-lg" (click)="showCreateForm()" *ngIf="isLogged"></i>
 
 </div>
 
@@ -126,9 +126,9 @@
                             <h5>{{myExperience.startDate}} - {{myExperience.endDate}}</h5>
                         </div>
                         <div>
-                            <i href="#" class="fa-solid fa-square-pen fa-lg" (click)="loadExperienceData(myExperience.id)"></i>
+                            <i href="#" class="fa-solid fa-square-pen fa-lg" (click)="loadExperienceData(myExperience.id)" *ngIf="isLogged"></i>
                             <i href="#" class="fa-solid fa-square-xmark fa-lg"
-                                (click)="deleteById(myExperience.id)"></i>
+                                (click)="deleteById(myExperience.id)" *ngIf="isLogged"></i>
                         </div>
                     </div>
                     <div class="card-content">

@@ -1,0 +1,10 @@
+.img-project{
+    height: 7rem;
+    position:relative;
+    object-fit: cover;
+    overflow: hidden;
+    width: 7rem;
+}
+h4{
+    display: inline;
+}

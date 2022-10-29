@@ -63,10 +63,16 @@ h2 {
         height: 7rem;
         margin-top: 2.2rem;
     }
-
     .card-about {
         margin-top: 0.5em;
-        padding: 1.2em;
+        padding-left: 1.2em;
     }
+}
 
+@media screen and ( max-width: 400px){
+    .card-about {
+        margin-top: 0.5em;
+        padding-left: 2.2em;
+    }
+    
 }
